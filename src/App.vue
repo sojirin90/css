@@ -18,11 +18,22 @@
 
         <div v-for="hobby in Hobbies" :key="hobby" id="app">
             <ul>
-                <li>{{ hobby }}</li>
+                <!-- <li>{{ hobby }}</li>
+                <div class="containers">
+                    <div class="text-center">
+                        <button class="btn btn-primary remove" @click.prevent="Delete(index)">Delete</button>
+                    </div>
+                </div> -->
+                
+                
+                <li>
+                <div class="text-center">
+                {{ hobby }}
+                 <button class="btn btn-primary remove m-l-20" @click.prevent="Delete(index)">delete</button>
+                </div>
+                </li>
+
             </ul>
-            <div class="text-center">
-                <button class="btn btn-primary remove" @click.prevent="Delete(index)">delete</button>
-            </div>
         </div>
     </div>
 
@@ -81,8 +92,11 @@ ul li {
     background-color: rgb(151, 251, 57);
 }
 .center {
-   float: right;
    background: cyan;
+}
+.containers {
+    display: flex;
+    flex-direction: column;
 }
 
 </style>
