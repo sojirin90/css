@@ -18,11 +18,19 @@
 
         <div v-for="hobby in Hobbies" :key="hobby" id="app">
             <ul>
-                <li>{{ hobby }}</li>
+                 <!-- each list item is a div which contains the hobby and the delete button -->
+                <li>
+    
+                <!-- TODO: Try to make the code better by clearing the text input whenever i add a new hobby with the "add hobby button". -->
+                <div class="text-center">
+                {{ hobby }}
+                 <button class="btn btn-primary remove m-l-20" @click.prevent="Delete(index)">delete</button>
+                </div>
+                </li>
+
+                 
             </ul>
-            <div class="text-center">
-                <button class="btn btn-primary remove" @click.prevent="Delete(index)">delete</button>
-            </div>
+            
         </div>
     </div>
 
