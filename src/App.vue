@@ -18,21 +18,12 @@
 
         <div v-for="hobby in Hobbies" :key="hobby" id="app">
             <ul>
-                <!-- <li>{{ hobby }}</li>
-                <div class="containers">
-                    <div class="text-center">
-                        <button class="btn btn-primary remove" @click.prevent="Delete(index)">Delete</button>
-                    </div>
-                </div> -->
-                
-                
                 <li>
-                <div class="text-center">
-                {{ hobby }}
-                 <button class="btn btn-primary remove m-l-20" @click.prevent="Delete(index)">delete</button>
-                </div>
+                    <div class="text-center">
+                        {{ hobby }}
+                        <button class="btn btn-primary remove m-l-20" @click.prevent="Delete(index)">delete</button>
+                    </div>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -60,15 +51,12 @@
 </script>
 
 <style>
-
-.row {
-    background-color: rgb(172, 228, 238);
-}
 header {
     font-family: sans-serif;
     font-size: 90px;
     color: white;
     text-shadow: 5px 8px 10px #222;
+    background-color: #5aa8fb;
 }
 .remove {
     background-color: red;
@@ -80,8 +68,7 @@ header {
     background-color: rgb(255, 2, 2);
 }
 ul li {
-    background-color: rgb(209, 196, 194);
-    color: white;
+    background-color: #f2cfcb;
     margin-bottom: 5px;
     font-family: "montserrat", "verdana", "sans-serif";
     font-size: 30px;
@@ -89,14 +76,10 @@ ul li {
     list-style-type: none;
 }
 .container {
-    background-color: rgb(151, 251, 57);
+    background-color: #5aa8fb;
 }
 .center {
+   float: right;
    background: cyan;
 }
-.containers {
-    display: flex;
-    flex-direction: column;
-}
-
 </style>
