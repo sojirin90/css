@@ -1,16 +1,14 @@
 <template>
 
     <div class="container">
-       <header class="text-center my-5">Welcome to your Hobby</header>
+       <header class="text-center my-20">Welcome to your Hobby</header>
         <div class="row">
-            <form>
-                <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 form-group" style=" display: inline-flex;">
-                    <div>
+            <form class="text-center">
+                <div  style=" display: inline-flex;">
+                    <div class="text-center">
                         <label>Hobby</label>
                         <input v-model="Hobby" placeholder="">
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary plus" @click.prevent="createNew">Add Hobby</button>
+                        <button class="btn btn-primary plus " @click.prevent="createNew">Add Hobby</button>
                     </div>
                 </div>
            </form>
@@ -51,15 +49,13 @@
 </script>
 
 <style>
-
-.row {
-    background-color: rgb(172, 228, 238);
-}
 header {
     font-family: sans-serif;
     font-size: 90px;
     color: white;
     text-shadow: 5px 8px 10px #222;
+    background-color: #5aa8fb;
+    margin-bottom: 20px;
 }
 .remove {
     background-color: red;
@@ -71,8 +67,7 @@ header {
     background-color: rgb(255, 2, 2);
 }
 ul li {
-    background-color: rgb(209, 196, 194);
-    color: white;
+    background-color: #f2cfcb;
     margin-bottom: 5px;
     font-family: "montserrat", "verdana", "sans-serif";
     font-size: 30px;
@@ -80,11 +75,11 @@ ul li {
     list-style-type: none;
 }
 .container {
-    background-color: rgb(151, 251, 57);
+    background-color: #ffffff;
+    width: 100%;
 }
 .center {
    float: right;
    background: cyan;
 }
-
 </style>
