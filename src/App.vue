@@ -1,16 +1,14 @@
 <template>
 
     <div class="container">
-       <header class="text-center my-5">Welcome to your Hobby</header>
+       <header class="text-center my-20">Welcome to your Hobby</header>
         <div class="row">
-            <form>
-                <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 form-group" style=" display: inline-flex;">
-                    <div>
-                        <label>Hobby</label>
-                        <input v-model="Hobby" placeholder="">
-                    </div>
+            <form class="text-center">
+                <div  style=" display: inline-flex;">
                     <div class="text-center">
-                        <button class="btn btn-primary plus" @click.prevent="createNew">Add Hobby</button>
+                        <label>Hobby</label>
+                        <input v-model="Hobby" placeholder="  ">
+                        <button class="btn btn-primary plus " @click.prevent="createNew">Add Hobby</button>
                     </div>
                 </div>
            </form>
@@ -57,9 +55,11 @@ header {
     color: white;
     text-shadow: 5px 8px 10px #222;
     background-color: #5aa8fb;
+    margin-bottom: 20px;
 }
 .remove {
     background-color: red;
+    margin-left: 125px;
 }
 .plus {
     background-color: rgb(185, 53, 29);
@@ -76,7 +76,8 @@ ul li {
     list-style-type: none;
 }
 .container {
-    background-color: #5aa8fb;
+    background-color: #ffffff;
+    width: 100%;
 }
 .center {
    float: right;
