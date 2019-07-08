@@ -4,27 +4,42 @@
        <header class="text-center my-20">Welcome to your Hobby</header>
         <div class="row">
             <form class="text-center">
-                <div  style=" display: inline-flex;">
                     <div class="text-center">
-                        <label>Hobby</label>
-                        <input v-model="Hobby" placeholder="  ">
-                        <button class="btn btn-primary plus " @click.prevent="createNew">Add Hobby</button>
+                        <label style="margin-right: 5px">Enter your hobby:</label>
+                        <input v-model="Hobby" placeholder="  " style="margin-right: 10px">
+                         //used a bootstrap button with icon for the add
+                        <button type="button" class="btn btn-labeled btn-success" style="margin-bottom:0px !important" @click.prevent="createNew">
+                        <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>Add Hobby</button>       
                     </div>
-                </div>
            </form>
         </div>
 
-        <div v-for="hobby in Hobbies" :key="hobby" id="app">
-            <ul>
-                <li>
-                    <div class="text-center">
-                        {{ hobby }}
-                        <button class="btn btn-primary remove m-l-20" @click.prevent="Delete(index)">delete</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
+     
+//Used table to show hobby list using bootstrap styling
+<table class="table table-striped" style=" width: 70%; margin: 0 auto !important;">
+  <thead>
+    <tr>
+      <th scope="col" style="text-align: center">#</th>
+      <th scope="col" style="text-align: center">Hobby</th>
+      <th scope="col" style="text-align: center">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="(hobby, index) in Hobbies" :key="hobby">
+      <th scope="row" style="text-align: center; vertical-align: middle;">{{index}}</th>
+      <td style="text-align: center; vertical-align: middle;">{{hobby}}</td>
+      <td style="text-align: center; vertical-align: middle;"> 
+          //used a bootstrap button with icon for the delete
+          <button type="button" class="btn btn-labeled btn-danger" @click.prevent="Delete(index)">
+        <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>Delete</button>
+        </td>
+      
+    </tr>
+  </tbody>
+</table>
     </div>
+
+    
 
 </template>
 
@@ -40,6 +55,7 @@
             createNew() {
                 console.log(this.Hobby)
                 this.Hobbies.push(this.Hobby)
+                this.Hobby = "";//removes the input text after it has been inputted in the list
             },
             Delete(index) {                
                 this.Hobbies.splice(index, 1);
@@ -59,7 +75,6 @@ header {
 }
 .remove {
     background-color: red;
-    margin-left: 125px;
 }
 .plus {
     background-color: rgb(185, 53, 29);
@@ -83,4 +98,8 @@ ul li {
    float: right;
    background: cyan;
 }
+
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }
 </style>
