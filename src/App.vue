@@ -7,7 +7,7 @@
                 <div  style=" display: inline-flex;">
                     <div class="text-center">
                         <label>Hobby</label>
-                        <input v-model="Hobby" placeholder="">
+                        <input v-model="Hobby" placeholder="  ">
                         <button class="btn btn-primary plus " @click.prevent="createNew">Add Hobby</button>
                     </div>
                 </div>
@@ -59,6 +59,7 @@ header {
 }
 .remove {
     background-color: red;
+    margin-left: 125px;
 }
 .plus {
     background-color: rgb(185, 53, 29);
