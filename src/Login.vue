@@ -51,5 +51,9 @@ export default {
 
 <style>
 
+.col-md-6 {
+    padding-left: 700px;
+}
+
 </style>
 
