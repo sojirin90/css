@@ -1,97 +1,76 @@
+
+
+
+
+
 <template>
-  <div class="login">
-    <div v-if="loggingIn" class="container-loading">
-      <img src="/loading.gif" alt="Loading Icon">
+    <div class="row my-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-center my-4">Login</h3>
+                    <div class="form-group">
+                        <input v-bind:class="{ 'is-invalid': errors.email }" v-model="email" type="text" placeholder="Email" class="form-control">
+                        <div class="errors" v-if="errors.email">
+                            <small class="text-danger" :key="error" v-for="error in errors.email">{{ error }}</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input v-bind:class="{ 'is-invalid': errors.password }" v-model="password" type="Password" placeholder="Password" class="form-control">
+                        <div class="errors" v-if="errors.password">
+                            <small class="text-danger" :key="error" v-for="error in errors.password">{{ error }}</small>
+                        </div>        
+                    </div>
+                    <div class="form-group text-center">
+                        <button @click="loginUser()" :disabled="loading" class="btn form-control btn-success">
+                            <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                            {{ loading ? '' : 'Login' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <p v-if="loginError">{{ loginError }}</p>
-    <p v-if="loginSuccessful">Login Successful</p>
-    <form @submit.prevent="loginSubmit">
-      <input type="email" placeholder="E-Mail" v-model="email">
-      <input type="password" placeholder="Password" v-model="password">
-      <button type="submit">Login</button>
-    </form>
-  </div>
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  export default {
+export default {
     data() {
-      return {
-        email: '',
-        password: ''
-      }
-    },
-    computed: {
-      ...mapState([
-        'loggingIn',
-        'loginError',
-        'loginSuccessful'
-      ])
+        return {
+            email: "",
+            password: "",
+            errors: {},
+            loading: false,
+        };
     },
     methods: {
-      ...mapActions([
-        'doLogin'
-      ]),
-      loginSubmit() {
-        this.doLogin({
-          email: this.email,
-          password: this.password
-          
-        });
-      }
+        loginUser() {
+            Axios.post('https://react-blog-api.bahdcasts.com/api/auth/login', {
+                email: this.email,
+                password: this.password
+            })
+            .then(response => {
+                this.loading = false;
+                this.$root.auth = response.data.data;
+                localStorage.setItem('auth', JSON.stringify(response.data.data));
+                this.$router.push("home");
+            })
+            .catch(({ response }) => {
+                this.loading = flase;
+                if (response.status === 401) {
+                    this.errors = {
+                        email: ['These crendentials do not match our records.']
+                    };
+                } else {
+                    this.errors = response.data;
+                }
+            })
+        }
     }
-  }
+};
 </script>
 
-<style scoped lang="scss">
-  .login {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 1.5rem;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    .container-loading {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0,0,0,.3);
-      img {
-        width: 2rem;
-        height: 2rem;
-      }
-    }
-    form {
-      display: flex;
-      flex-flow: column;
-      *:not(:last-child) {
-        margin-bottom: 1rem;
-      }
-      input {
-        padding: .5rem;
-      }
-      button {
-        padding: .5rem;
-        background-color: lightgray;
-        border: 1px solid gray;
-        border-radius: 3px;
-        cursor: pointer;
-        &:hover {
-          background-color: lightslategray;
-        }
-      }
-    }
-  }
+<style>
+
+
 </style>
-
-
-
-
