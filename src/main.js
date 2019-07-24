@@ -1,8 +1,15 @@
-import Vue from 'vue'
+
+import Vue from 'vue';
 import App from './App.vue'
-import Login from './Login.vue'
+import router from './router';
+
+Vue.config.productionTip = false;
+
+
 
 new Vue({
   el: '#app',
-  render: h => h(Login)
-})
+  router,
+  template: '<App/>',
+  components: {App}
+});
